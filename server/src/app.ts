@@ -4,7 +4,6 @@ import { signoutRouter } from './admin/routes/signout';
 import { signinRouter } from './admin/routes/signin';
 import { json, urlencoded } from 'body-parser';
 import { adminStreamRouter } from './admin/routes/stream';
-import { liveStreamRouter } from './live-streaming/liveStream';
 import cors from 'cors';
 
 const app = express();

@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { app } from "./app";
+import { app } from "../app";
 import * as http from "http";
 
 const httpServer = new http.Server(app);

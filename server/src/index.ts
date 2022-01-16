@@ -1,4 +1,4 @@
-import { httpServer } from "./streamingApp";
+import { httpServer } from "./live-streaming/streamingApp";
 import * as dotenv from 'dotenv';
 
 dotenv.config();
