@@ -27,8 +27,6 @@ app.use(signinRouter);
 app.use(signoutRouter);
 app.use(adminStreamRouter);
 
-app.use(liveStreamRouter);
-
 app.get('/health', (req, res) => {
   res.sendStatus(200);
 })
