@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="https://cdn.jsdelivr.net/npm/peerjs@1.3.2/dist/peerjs.min.js"></script>
+  <script defer type="module" src="/public/js/index.js"></script>
+  <title>SweatStream</title>
+  <style>
+        video {
+          /* min-width: 100%; 
+          min-height: 100%; */
+          width: 100%; 
+          height: 100%; 
+          z-index: -100;
+          background-size: cover;
+          overflow: hidden;
+        }
+        .wrapper {
+          display: grid;
+          height: 100vh;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(1, 50px) repeat(4, 1fr);
+          gap: 10px;
+          grid-auto-rows: minmax(100px, auto);
+          grid-auto-columns: minmax(100px, auto);
+        }
+
+        .header {
+          grid-column: 1 / -1;
+          grid-row: 1;
+          background-color: #915151;
+          color: ivory;
+          padding-left: 10px;
+        }
+
+        .controls {
+          grid-column: 5;
+          grid-row: 2;
+          z-index: 10;
+          padding: 20px;
+          text-align: right;
+        }
+
+        .videoplayer {
+          grid-column: 1 / 6;
+          grid-row: 2 / 5;
+          border:  #E8E8E8 solid;
+        }
+
+        .livechat {
+          color: lightsalmon;
+          grid-column: 1 / -1;
+          grid-row: 5 / 7;
+          background-color: #E8E8E8;
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          gap: 10px;
+          padding: 10px;
+        }
+
+        .messages {
+          grid-column: 1/ -1;
+          grid-row: 2 / 5;
+          overflow-y:auto;
+        }
+
+        ul {
+          padding-top: 1px;
+          list-style: none;
+          padding-left: 0;
+        }
+
+        .single-message {
+          list-style-type: none;
+          border-bottom: #b8b8b8 solid 1px;
+          font-size: 15px;
+          padding-top: 2px;
+        }
+
+        .text {
+          grid-column: 1/-1;
+        }
+
+        .countdisplay{
+          grid-column: 1/-1;
+        }
+  </style>
+</head>
+<body>
+  <div class=wrapper>
+    <div class="header">
+      <h2>SweatStream.com</h2>
+    </div>
+
+    <div class="controls">
+      <button id="sound" type="button">Unmute</button>
+    </div>
+
+    <div class="videoplayer">
+      <video id="videoplayer" autoplay muted></video>
+    </div>
+
+    <div class="livechat">
+      <div class = "countdisplay">
+        Viewers in chat: <span id="viewerCount">0</span>
+      </div>
+      <div class="messages" id="messages">
+        <ul id="message-list">
+        </ul>
+      </div>
+      <input type="text" class="text" id="chat-input" placeholder="Type away!"/>
+    </div>
+  </div>  
+</body>
+</html>

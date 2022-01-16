@@ -1,17 +1,34 @@
 import express from 'express';
-// import { json } from 'body-parser';
-//import cookieSession from 'cookie-session';
+import cookieSession from 'cookie-session';
+import { signoutRouter } from './admin/routes/signout';
+import { signinRouter } from './admin/routes/signin';
+import { json, urlencoded } from 'body-parser';
+import { adminStreamRouter } from './admin/routes/stream';
+import { liveStreamRouter } from './live-streaming/liveStream';
+import cors from 'cors';
 
 const app = express();
-// app.set('trust proxy', true);
-// app.use(json());
 
-// app.use(
-//   cookieSession({
-//     signed: false,
-//     secure: process.env.NODE_ENV !== 'test'
-//   })
-// );
+app.use(json())
+app.use(urlencoded({ extended: true })); 
+app.use(cors());
+
+app.set('views', 'src/views');
+app.set('view engine', 'ejs');
+app.use("/public", express.static('src/public'))
+
+app.use(
+  cookieSession({
+    signed: false,
+    secure: false
+  })
+);
+
+app.use(signinRouter);
+app.use(signoutRouter);
+app.use(adminStreamRouter);
+
+app.use(liveStreamRouter);
 
 app.get('/health', (req, res) => {
   res.sendStatus(200);

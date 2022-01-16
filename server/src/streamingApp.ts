@@ -3,10 +3,45 @@ import { app } from "./app";
 import * as http from "http";
 
 const httpServer = new http.Server(app);
+
 const socketServer = new Server(httpServer);
+let viewerCount = 0;
+
+const messageList: string[] = [] ;
+
+function purgeLastHundred(){
+    if(messageList.length>200){
+        messageList.slice(100);
+    }
+}
+
+setInterval(purgeLastHundred, 10000);
 
 socketServer.on('connection', (socket) => {
-    console.log('a user connected');
+    viewerCount++;
+    console.log('a user connected. Total viewer count:', viewerCount);
+    socket.emit("viewer-count", viewerCount);
+
+    socket.on('disconnect', () => {
+        viewerCount--;
+        console.log('A user disconnected. Total viewer count:', viewerCount);
+        socket.emit("viewer-count", viewerCount);
+    });
+
+    socket.on("join-as-streamer", (streamerId) => {
+        socket.broadcast.emit('streamer-joined', streamerId);
+    });
+
+    socket.on("join-as-viewer", (viewerId) => {
+        socket.broadcast.emit('viewer-connected', viewerId);
+        socket.emit("backfill-messages", messageList);
+    });
+
+    socket.on("add-message-to-live-chat", (message) => {
+        messageList.push(message);
+        socket.emit('new-message', message);
+        socket.broadcast.emit('new-message', message);
+    });
 });
 
 export { httpServer };

@@ -6,7 +6,7 @@
   "scripts": {
     "buildRun": "tsc && node dist/app.js",
     "build": "tsc",
-    "start": "nodemon src/index.ts",
+    "start": "peerjs --port 3001 & nodemon src/index.ts .env",
     "lint": "npx eslint . --ext .ts"
   },
   "keywords": [],
@@ -14,12 +14,16 @@
   "license": "ISC",
   "dependencies": {
     "cookie-session": "^2.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "peer": "^0.6.1",
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.7",
     "@types/node": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
