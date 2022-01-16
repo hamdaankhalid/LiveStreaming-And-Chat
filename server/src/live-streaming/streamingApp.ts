@@ -4,6 +4,9 @@ import * as http from "http";
 
 const httpServer = new http.Server(app);
 
+app.get('/', (req, res) =>{
+    res.render('index');
+});
 const socketServer = new Server(httpServer);
 let viewerCount = 0;
 
