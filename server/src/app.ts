@@ -7,7 +7,7 @@ import { adminStreamRouter } from './admin/routes/stream';
 import cors from 'cors';
 
 const app = express();
-
+app.set('trust proxy', true);
 app.use(json())
 app.use(urlencoded({ extended: true })); 
 app.use(cors());

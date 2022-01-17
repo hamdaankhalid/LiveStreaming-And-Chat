@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "buildRun": "tsc && node dist/app.js",
+    "buildRun": "peerjs --port 3001 & tsc && node dist/index.js",
     "build": "tsc",
-    "start": "peerjs --port 3001 & nodemon src/index.ts .env",
+    "start": "peerjs --port 3001 & node dist/index.js",
+    "dev": "peerjs --port 3001 & nodemon src/index.ts .env",
     "lint": "npx eslint . --ext .ts"
   },
   "keywords": [],
@@ -14,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie-session": "^2.0.0",
+    "dotenv": "^14.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
