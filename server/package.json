@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "buildRun": "peerjs --port 3001 & tsc && node dist/index.js",
+    "buildRun": "tsc && node dist/index.js",
     "build": "tsc",
-    "start": "peerjs --port 3001 & node dist/index.js",
-    "dev": "peerjs --port 3001 & nodemon src/index.ts .env",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts .env",
     "lint": "npx eslint . --ext .ts"
   },
   "keywords": [],

@@ -1,11 +1,7 @@
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 
 const socket = io();
-const myPeer = new Peer(undefined, {
-    host: 'localhost',
-    path: '/',
-    port: '3001'
-});
+const myPeer = new Peer();
 
 const videoPlayer = document.getElementById('videoplayer');
 const soundToggle = document.getElementById("sound");
