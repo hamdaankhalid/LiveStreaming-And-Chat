@@ -30,13 +30,25 @@ myPeer.on('call', (call) => {
   });
 });
 
+myPeer.on("connection", (conn) => {
+  conn.on('close', () => {
+    setTimeout(reload, 1000);
+  });
+});
+
 socket.on('disconnect', () => {
+  // we dont really care about emitting this to the streamer tbh
   console.log('disconnected viewer');
 });
 
+socket.on('streamer-disconnected', (streamerId) => {
+  console.log(streamerId, ' Streamer has ended stream');
+  setTimeout(reload, 2000);
+})
+
 socket.on('streamer-joined', (streamerId) => {
   console.log('A streamer just joined!', streamerId);
-  setTimeout(window.location.reload, 2000);
+  setTimeout(reload, 2000);
 });
 
 socket.on('new-message', (message) => {
@@ -79,13 +91,13 @@ soundToggle.addEventListener('click', () => {
   soundToggle.innerText = videoPlayer.muted ? 'Unmute' : 'Mute';
 });
 
-
 /**
  * Helper Functions
  */
+const reload = window.location.reload.bind(window.location);
 
 function emitNewMessageAndResetInput() {
-  socket.emit('add-message-to-live-chat', { text: messageInput.value, date: Date() });
+  socket.emit('add-message-to-live-chat', messageInput.value);
   messageInput.value = '';
 };
 
@@ -97,6 +109,7 @@ function addVideoStream(video, stream) {
 };
 
 function appendToChat(message) {
+  console.log(message);
   const li = document.createElement('li');
   li.className = 'message';
 
