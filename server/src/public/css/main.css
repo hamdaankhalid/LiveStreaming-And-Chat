@@ -1,0 +1,98 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 0.75em 0;
+}
+
+header h1 {
+  font-size: 1.75em;
+}
+
+main section {
+  flex: 1;
+}
+
+video {
+  width: 100%;
+}
+
+.video-section {
+  position: relative;
+}
+
+.controls {
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
+
+#videoplayer {
+  border:  #E8E8E8 solid 1px;
+}
+
+.livechat {
+  color: black;
+  background-color: #E8E8E8;
+  padding: 1em;
+}
+
+#chat-input {
+  flex: 3;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.livechat h5 {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.messages {
+  height: 7em;
+  overflow-y: scroll;
+}
+
+.chat-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input-container button {
+  flex: 1;
+  margin-left: 1em;
+  width: 100%;
+}
+
+ul {
+  padding-top: 1px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.single-message {
+  list-style-type: none;
+  border-bottom: #b8b8b8 solid 1px;
+  font-size: 15px;
+  padding: 0.5em 0;
+}
+
+.message {
+  list-style-type: none;
+  border-bottom: #b8b8b8 solid 1px;
+  font-size: 15px;
+  padding: 0.5em 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.message .message-text {
+  flex: 1;
+}
+
+.message .message-time {
+  color: rgba(0, 0, 0, 0.3);
+}
