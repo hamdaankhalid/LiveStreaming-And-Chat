@@ -85,7 +85,7 @@ soundToggle.addEventListener('click', () => {
  */
 
 function emitNewMessageAndResetInput() {
-  socket.emit('add-message-to-live-chat', messageInput.value);
+  socket.emit('add-message-to-live-chat', { text: messageInput.value, date: Date() });
   messageInput.value = '';
 };
 
