@@ -1,6 +1,8 @@
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 
-const socket = io();
+const socket = io('', {
+    transports: ['websocket'],
+});
 const peerClient = new Peer();
 
 const videoRecorder = document.getElementById("videoRecording");

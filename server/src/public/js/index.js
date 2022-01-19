@@ -1,6 +1,9 @@
 import {io} from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 
-const socket = io();
+const socket = io('', {
+  transports: ['websocket'],
+});
+
 const myPeer = new Peer();
 
 const videoPlayer = document.getElementById('videoplayer');
@@ -109,7 +112,6 @@ function addVideoStream(video, stream) {
 };
 
 function appendToChat(message) {
-  console.log(message);
   const li = document.createElement('li');
   li.className = 'message';
 
